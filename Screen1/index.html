@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/2ca71d1b50.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Acesse seu Cadastro</title>
+</head>
+<body>
+
+    <video class="background-video" autoplay muted loop>
+        <source src="img/Design Emocional - Video 6.mp4" type="video/mp4">
+    </video>
+
+    <div class="login-box">
+        <p id="statusMensagem" class="oculto"></p>
+        <div class="logo-container">
+                <img src="img/Water-Theme-Park-Transparent-Images.png" alt="">
+        </div>
+        <h1 class="top-text">Acesse sua conta</h1>
+        <form id="loginForm" class="input-container"> <!-- Adicionado ID -->
+            <label class="email-input">
+                <i class="fas fa-envelope icons"></i>
+                <input type="email" id="emailAc" name="email" placeholder="E-mail" required>
+            </label>
+            <label class="password-input">
+                <i class="fas fa-lock icons"></i>
+                <input type="password" id="senhaAc" name="password" placeholder="Senha" required autocomplete="current-password">
+            </label>
+            <button class="access-buttom" type="submit" id="access">Acessar</button>
+            <a href="http://127.0.0.1:5500/screen2/index.html" class="button-go-to-account-creation">Não tem conta? Criar nova conta aqui</a>
+        </form>
+    </div>
+
+    <script src="js/index.js"></script> <!-- Adicionando JavaScript externo -->
+</body>
+</html>

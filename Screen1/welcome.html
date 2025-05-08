@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/screen1/css/styleWelcome.css">
+  <title>Boas-vindas</title>
+</head>
+<body>
+
+    <video class="background-video" autoplay muted loop>
+        <source src="img/Design Emocional - Video 6.mp4" type="video/mp4">
+    </video> 
+
+    <div class="message-box">
+  <div class="mensagem" id="mensagemUsuario">
+    Carregando...
+  </div>
+    </div> 
+
+  <script>
+    // Função para decodificar JWT
+    function parseJwt(token) {
+      try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+          '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        ).join(''));
+        return JSON.parse(jsonPayload);
+      } catch (e) {
+        console.error("Token inválido:", e);
+        return null;
+      }
+    }
+
+    // Recupera o token do localStorage
+    const token = localStorage.getItem("token");
+    const mensagemEl = document.getElementById("mensagemUsuario");
+
+    if (token) {
+      const dados = parseJwt(token);
+
+      if (dados && dados.email && dados.exp) {
+        const email = dados.email;
+        const dataExp = new Date(dados.exp * 1000); // converte de UNIX timestamp
+
+        const dataFormatada = dataExp.toLocaleString("pt-BR", {
+          dateStyle: "long",
+          timeStyle: "short"
+        });
+
+        mensagemEl.textContent = `Seja bem-vindo(a), ${email}! Seu token expira em ${dataFormatada}.`;
+      } else {
+        mensagemEl.textContent = "❌ Não foi possível ler os dados do token.";
+      }
+    } else {
+      mensagemEl.textContent = "⚠️ Token não encontrado. Faça login novamente.";
+    }
+  </script>
+
+</body>
+</html>
